@@ -1,6 +1,8 @@
 from datetime import datetime
-from typing import List, Optional, Dict, Any
+from typing import Any
+
 from pydantic import BaseModel, Field
+
 
 class HostNodeOut(BaseModel):
     id: int
@@ -11,8 +13,9 @@ class HostNodeOut(BaseModel):
     total_ram_gb: float
     status: str
     region: str
-    tags: Dict[str, Any]
+    tags: dict[str, Any]
     last_heartbeat: datetime
+
 
 class MetricPointOut(BaseModel):
     id: int
@@ -23,14 +26,16 @@ class MetricPointOut(BaseModel):
     network_rx_mb: float
     network_tx_mb: float
 
+
 class MetricIngestIn(BaseModel):
     hostname: str
-    timestamp: Optional[datetime] = None
+    timestamp: datetime | None = None
     cpu_usage_percent: float = Field(..., ge=0.0, le=100.0)
     memory_usage_percent: float = Field(..., ge=0.0, le=100.0)
     disk_usage_percent: float = Field(..., ge=0.0, le=100.0)
     network_rx_mb: float = 0.0
     network_tx_mb: float = 0.0
+
 
 class LogEntryOut(BaseModel):
     id: int
@@ -39,17 +44,19 @@ class LogEntryOut(BaseModel):
     service_name: str
     level: str
     message: str
-    trace_id: Optional[str] = None
-    metadata: Dict[str, Any]
+    trace_id: str | None = None
+    metadata: dict[str, Any]
+
 
 class LogIngestIn(BaseModel):
     hostname: str
-    timestamp: Optional[datetime] = None
+    timestamp: datetime | None = None
     service_name: str
     level: str = "INFO"
     message: str
-    trace_id: Optional[str] = None
-    metadata: Optional[Dict[str, Any]] = None
+    trace_id: str | None = None
+    metadata: dict[str, Any] | None = None
+
 
 class ClusterOverviewOut(BaseModel):
     total_nodes: int

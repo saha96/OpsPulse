@@ -1,0 +1,21 @@
+# OpsPulse Ruff Linter Configuration
+line-length = 120
+target-version = "py312"
+
+[lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort (import sorting)
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+]
+ignore = [
+    "EXE001", # Shebang is present but file is not executable (cross-platform git compatibility)
+    "E501",   # Line length handled by formatter
+    "B008",   # Do not perform function call in argument defaults (standard in Django/Ninja)
+]
+
+[lint.isort]
+known-first-party = ["core", "apps"]

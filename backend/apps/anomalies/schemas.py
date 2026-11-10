@@ -1,6 +1,7 @@
 from datetime import datetime
-from typing import Optional
+
 from pydantic import BaseModel
+
 
 class AnomalyIncidentOut(BaseModel):
     id: int
@@ -16,7 +17,8 @@ class AnomalyIncidentOut(BaseModel):
     root_cause_summary: str
     recommended_action: str
     detected_at: datetime
-    resolved_at: Optional[datetime] = None
+    resolved_at: datetime | None = None
+
 
 class AnomalyResolveIn(BaseModel):
-    resolution_notes: Optional[str] = "Resolved by operator"
+    resolution_notes: str | None = "Resolved by operator"

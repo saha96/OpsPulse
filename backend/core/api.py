@@ -1,10 +1,12 @@
 """
 Main Django Ninja API Router for OpsPulse.
 """
+
 from ninja import NinjaAPI
+
+from apps.anomalies.api import router as anomalies_router
 from apps.authentication.api import router as auth_router
 from apps.telemetry.api import router as telemetry_router
-from apps.anomalies.api import router as anomalies_router
 
 api = NinjaAPI(
     title="OpsPulse Telemetry & AIOps API",
