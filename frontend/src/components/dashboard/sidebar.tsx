@@ -96,7 +96,7 @@ export function DashboardSidebar({ activeTab, setActiveTab }: SidebarProps) {
       <div className="p-4 border-t">
         <div className="rounded-lg bg-secondary/50 p-3 border text-xs space-y-1.5">
           <div className="font-semibold text-foreground flex items-center justify-between">
-            <span>Metifi-Grade Stack</span>
+            <span>Production-Grade Stack</span>
             <span className="text-[10px] text-primary font-mono">v1.0</span>
           </div>
           <p className="text-[11px] text-muted-foreground leading-relaxed">
