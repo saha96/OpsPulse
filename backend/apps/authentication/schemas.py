@@ -1,31 +1,32 @@
 from datetime import datetime
 
-from pydantic import BaseModel, EmailStr
+from ninja import Schema
+from pydantic import EmailStr
 
 
-class LoginIn(BaseModel):
+class LoginIn(Schema):
     username: str
     password: str
 
 
-class RegisterIn(BaseModel):
+class RegisterIn(Schema):
     username: str
     email: EmailStr
     password: str
     department: str | None = "Platform Engineering"
 
 
-class TokenOut(BaseModel):
+class TokenOut(Schema):
     access_token: str
     refresh_token: str
     token_type: str = "Bearer"
 
 
-class RefreshTokenIn(BaseModel):
+class RefreshTokenIn(Schema):
     refresh_token: str
 
 
-class UserProfileOut(BaseModel):
+class UserProfileOut(Schema):
     id: int
     username: str
     email: str

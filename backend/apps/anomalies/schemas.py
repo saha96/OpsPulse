@@ -1,9 +1,9 @@
 from datetime import datetime
 
-from pydantic import BaseModel
+from ninja import Schema
 
 
-class AnomalyIncidentOut(BaseModel):
+class AnomalyIncidentOut(Schema):
     id: int
     node_id: int
     node_hostname: str
@@ -20,5 +20,5 @@ class AnomalyIncidentOut(BaseModel):
     resolved_at: datetime | None = None
 
 
-class AnomalyResolveIn(BaseModel):
+class AnomalyResolveIn(Schema):
     resolution_notes: str | None = "Resolved by operator"

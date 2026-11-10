@@ -8,7 +8,7 @@ class TestAuthenticationAPI:
     def test_register_success(self, client):
         payload = {
             "username": "newdev",
-            "email": "newdev@opspulse.local",
+            "email": "newdev@example.com",
             "password": "StrongPassword123!",
             "department": "Core Infrastructure",
         }
@@ -16,13 +16,13 @@ class TestAuthenticationAPI:
         assert response.status_code == 200
         data = response.json()
         assert data["username"] == "newdev"
-        assert data["email"] == "newdev@opspulse.local"
+        assert data["email"] == "newdev@example.com"
         assert User.objects.filter(username="newdev").exists()
 
     def test_register_duplicate_username_fails(self, client, test_user):
         payload = {
             "username": test_user.username,
-            "email": "different@opspulse.local",
+            "email": "different@example.com",
             "password": "Password123!",
         }
         response = client.post("/auth/register", json=payload)

@@ -1,10 +1,10 @@
 from datetime import datetime
 from typing import Any
 
-from pydantic import BaseModel, Field
+from ninja import Field, Schema
 
 
-class HostNodeOut(BaseModel):
+class HostNodeOut(Schema):
     id: int
     hostname: str
     ip_address: str
@@ -17,7 +17,7 @@ class HostNodeOut(BaseModel):
     last_heartbeat: datetime
 
 
-class MetricPointOut(BaseModel):
+class MetricPointOut(Schema):
     id: int
     timestamp: datetime
     cpu_usage_percent: float
@@ -27,7 +27,7 @@ class MetricPointOut(BaseModel):
     network_tx_mb: float
 
 
-class MetricIngestIn(BaseModel):
+class MetricIngestIn(Schema):
     hostname: str
     timestamp: datetime | None = None
     cpu_usage_percent: float = Field(..., ge=0.0, le=100.0)
@@ -37,7 +37,7 @@ class MetricIngestIn(BaseModel):
     network_tx_mb: float = 0.0
 
 
-class LogEntryOut(BaseModel):
+class LogEntryOut(Schema):
     id: int
     node_hostname: str
     timestamp: datetime
@@ -48,7 +48,7 @@ class LogEntryOut(BaseModel):
     metadata: dict[str, Any]
 
 
-class LogIngestIn(BaseModel):
+class LogIngestIn(Schema):
     hostname: str
     timestamp: datetime | None = None
     service_name: str
@@ -58,7 +58,7 @@ class LogIngestIn(BaseModel):
     metadata: dict[str, Any] | None = None
 
 
-class ClusterOverviewOut(BaseModel):
+class ClusterOverviewOut(Schema):
     total_nodes: int
     healthy_nodes: int
     degraded_nodes: int

@@ -20,7 +20,7 @@ def test_user(db):
     """Create a default active engineer user."""
     user = User.objects.create_user(
         username="testengineer",
-        email="engineer@opspulse.local",
+        email="engineer@example.com",
         password="ValidPassword123!",
         role=User.Role.ENGINEER,
         department="Site Reliability",
